@@ -6,22 +6,20 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.jsx', '.js']
     }, module: {
         rules: [{
-            test: /\.(tsx|ts)$/,
-            exclude: /node_modules/,
-            use: {
+            test: /\.(tsx|ts)$/, exclude: /node_modules/, use: {
                 loader: 'babel-loader', options: {
                     presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react']
                 }
             }
         }, {
-            test: /\.(jsx|js)$/,
-            exclude: /node_modules/,
-            use: {
+            test: /\.(jsx|js)$/, exclude: /node_modules/, use: {
                 loader: 'babel-loader', options: {
                     presets: ['@babel/preset-env', '@babel/preset-react']
                 }
             }
-        }]
+        }, {
+            test: /\.css$/i, use: ['style-loader', 'css-loader']
+        },]
     }, output: {
         clean: true
     }, plugins: [new HtmlWebpackPlugin({
