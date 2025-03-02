@@ -18,7 +18,15 @@ module.exports = {
                 }
             }
         }, {
-            test: /\.css$/i, use: ['style-loader', 'css-loader']
+            test: /\.css$/i, exclude: /\.module\.css$/, use: ['style-loader', 'css-loader']
+        }, {
+            test: /\.module\.css$/i, use: ['style-loader', {
+                loader: 'css-loader', options: {
+                    modules: {
+                        namedExport: false
+                    }
+                }
+            }]
         },]
     }, output: {
         clean: true
